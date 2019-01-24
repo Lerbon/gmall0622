@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace:接口的全路径-->
+<mapper namespace="com.atguigu.gmall.manage.mapper.BaseAttrInfoMapper">
+    <!--返回的结果集映射 id:resultMap唯一标示 type：返回类型
+   autoMapping：true 表示自动映射
+   -->
+    <resultMap id="baseAttrInfoMap" type="com.atguigu.gmall.bean.BaseAttrInfo" autoMapping="true">
+        <!--id:表示主键
+        column:表示 通过sql 语句查询出来的列名
+        property:表示实体类的属性名：
+        result: 表示普通列名
+    -->
+        <id column="id" property="id"></id>
+        <!-- BaseAttrInfo.attrValueList
+           mybatis 如果在配置一对多的时候，出现id重复的情况下，将使用别名来控制！
+       -->
+        <collection property="attrValueList" ofType="com.atguigu.gmall.bean.BaseAttrValue" autoMapping="true">
+            <id column="attr_value_id" property="id"></id>
+        </collection>
+    </resultMap>
+    
+    <select id="getBaseAttrInfoListByCatalog3Id" resultMap="baseAttrInfoMap">
+        select
+           bai.id,
+           bai.attr_name,
+           bai.catalog3_id,
+           bav.id attr_value_id,
+           bav.value_name,
+           bav.attr_id
+        from
+        base_attr_info bai
+        inner join base_attr_value bav
+        on bai.id = bav.attr_id
+        where
+        catalog3_id = #{0}
+    </select>
+    
+    <select id="selectAttrInfoListByIds" resultMap="baseAttrInfoMap">
+        SELECT ai.id,ai.attr_name,ai.catalog3_id, av.id attr_value_id ,av.attr_id ,av.value_name
+        FROM base_attr_info ai INNER JOIN base_attr_value av ON ai.id=av.attr_id
+        WHERE av.id IN (${valueIds})
+    </select>
+</mapper>
