@@ -84,6 +84,8 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartInfo> getCartList(String userId) {
         //先尝试从redis中获取
+
+
         Jedis jedis = redisUtil.getJedis();
         String userCartKey = CartConst.USER_KEY_PREFIX+userId+CartConst.USER_CART_KEY_SUFFIX;
 //        Redis HVALS命令用于获取在存储于 key的散列的所有值。
