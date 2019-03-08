@@ -35,6 +35,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderInfoMapper orderInfoMapper;
+
     @Autowired
     private OrderDetailMapper orderDetailMapper;
 
