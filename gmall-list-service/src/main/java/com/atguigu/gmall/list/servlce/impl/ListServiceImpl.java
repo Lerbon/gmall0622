@@ -173,7 +173,12 @@ public class ListServiceImpl implements ListService {
         return query;
     }
 
-    //对象转换
+    /**
+     * 对象转换
+     * @param skuLsParams
+     * @param searchResult
+     * @return
+     */
     private SkuLsResult makeResultForSearch(SkuLsParams skuLsParams,SearchResult searchResult){
         //searchResult转化为SkuLsResult
         SkuLsResult skuLsResult = new SkuLsResult();
