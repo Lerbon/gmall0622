@@ -109,7 +109,12 @@ public class ListServiceImpl implements ListService {
 
 
 
-    //编写dsl语句
+
+    /**
+     * 编写dsl语句
+     * @param skuLsParams
+     * @return
+     */
     private String makeQueryStringForSearch(SkuLsParams skuLsParams){
         //创建一个查询器
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();

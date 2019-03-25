@@ -1,13 +1,11 @@
 package com.atguigu.gmall.list.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.fastjson.JSON;
 import com.atguigu.gmall.bean.*;
 import com.atguigu.gmall.service.ListService;
 import com.atguigu.gmall.service.ManageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +25,6 @@ public class ListController {
     private ManageService manageService;
     @RequestMapping("list.html")
     public String getList(SkuLsParams skuLsParams,Map map){
-//        skuLsParams.setPageSize(1);
         SkuLsResult search = listService.search(skuLsParams);
         map.put("skuLsInfoList",search.getSkuLsInfoList());
         //从结果中取出平台属性值列表
